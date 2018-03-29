@@ -1,0 +1,37 @@
+﻿<ArcGIS defaultAssembly="ProAddIn.dll" defaultNamespace="ProAddIn" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <AddInInfo id="{32a819f0-27c4-4166-b49f-e296f159de62}" version="1.0" desktopVersion="2.1.10257">
+    <Name>ProEvergreen.ProAddIn</Name>
+    <Description>ProAddIn description</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>agrc-arcgis</Author>
+    <Company>Acme</Company>
+    <Date>3/15/2018 9:31:25 AM, 2018</Date>
+    <Subject>Framework</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+  <modules>
+    <insertModule id="ProEvergreen_ProAddIn_Module" className="Module1" autoLoad="false" caption="Module1">
+      <!-- uncomment to have the control hosted on a separate tab-->
+      <tabs>
+        <!--<tab id="ProAddIn_Tab1" caption="New Tab">
+          <group refID="ProAddIn_Group1"/>
+        </tab>-->
+      </tabs>
+      <groups>
+        <!-- comment this out if you have no controls on the Addin tab to avoid
+              an empty group-->
+        <group id="ProEvergreen_ProAddIn_Group1" caption="Group 1" appearsOnAddInTab="true">
+          <!-- host controls within groups -->
+          <button refID="ProEvergreen_ProAddInn_Button1" size="large" />
+        </group>
+      </groups>
+      <controls>
+        <!-- add your controls here -->
+        <button id="ProEvergreen_ProAddIn_Button1" caption="Button 1" className="Button1" loadOnClick="true" smallImage="Images\GenericButtonBlue16.png" largeImage="Images\GenericButtonBlue32.png">
+          <tooltip heading="Tooltip Heading">Tooltip text<disabledText /></tooltip>
+        </button>
+      </controls>
+    </insertModule>
+  </modules>
+</ArcGIS>
