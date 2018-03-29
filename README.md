@@ -15,7 +15,8 @@ Using github releases and release assets, you can automatically download and ins
 
 ### Nuget Installation
 
-1. Search for and install `ProEvergreen` [https://www.nuget.org/packages/ProEvergreen/](https://www.nuget.org/packages/ProEvergreen/)
+- **NuGet package manager**: Search for `ProEvergreen` [https://www.nuget.org/packages/ProEvergreen/](https://www.nuget.org/packages/ProEvergreen/)
+- **Powershell**: `Install-Package ProEvergreen -Version 1.0.0`
 
 ### Usage
 
