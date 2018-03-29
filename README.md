@@ -15,9 +15,7 @@ Using github releases and release assets, you can automatically download and ins
 
 ### Nuget Installation
 
-1. Search for and install `ProEvergreen` 
-
-[https://www.nuget.org/packages/ProEvergreen/](https://www.nuget.org/packages/ProEvergreen/)
+1. Search for and install `ProEvergreen` [https://www.nuget.org/packages/ProEvergreen/](https://www.nuget.org/packages/ProEvergreen/)
 
 ### Usage
 
@@ -36,9 +34,9 @@ var evergreen = new Evergreen("steveoh", "pro-evergreen");
 
 # Example
 
-You can view an addin example in [this repository](https://github.com/steveoh/pro-evergreen/tree/master/ProEvergreen.AddIn)
+You can view an addin example in [this repository](https://github.com/steveoh/pro-evergreen/tree/master/ProEvergreen.AddIn).
 
-This repository also has a [sample release](https://github.com/steveoh/pro-evergreen/releases)
+This repository also has a [sample release](https://github.com/steveoh/pro-evergreen/releases).
 
 # Publishing new releases
 ```
@@ -46,5 +44,5 @@ This repository also has a [sample release](https://github.com/steveoh/pro-everg
 nuget pack ProEvergreen.csproj Configuration=Release
 
 // publish
-nuget push ProEvergreen.1.0.0.nupkg {apikey} -Source https://api.nuget.org/v3/index.json
+nuget push ProEvergreen.{M.m.p}.nupkg {apikey} -Source https://api.nuget.org/v3/index.json
 ```
