@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ProEvergreen")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Auto update your esri arcgis pro addins")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AGRC")]
+[assembly: AssemblyCompany("Steve Gourley - AGRC - @steveagrc")]
 [assembly: AssemblyProduct("ProEvergreen")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/steveoh/pro-evergreen/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/steveoh/pro-evergreen</projectUrl>
+    <iconUrl>https://github.com/steveoh/pro-evergreen/blob/master/proevergreen.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial Release.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>ArcGIS Esri auto-update installer AddIn ArcGISPro esriAddinX GIS maps spatial map</tags>
+  </metadata>
+</package>
