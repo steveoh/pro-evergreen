@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <licenseUrl>https://github.com/steveoh/pro-evergreen/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/steveoh/pro-evergreen</projectUrl>
-    <iconUrl>https://github.com/steveoh/pro-evergreen/blob/master/proevergreen.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/steveoh/pro-evergreen/master/proevergreen.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial Release.</releaseNotes>
