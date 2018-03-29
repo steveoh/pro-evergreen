@@ -6,6 +6,12 @@ Never send an esri addin update to someone via email or a file share again!
 
 Using github releases and release assets, you can automatically download and install new versions.
 
+# What? Why?!
+
+Esri is **not** in the business of creating an addin registry like npm has for node or pypi has for python. This class library makes it simple for you to add the functionality to auto update pro addins for your users. When you add pro evergreen as a reference to your existing addin, you get access to methods that will check the version of the addin running with the version of the addin that you have made available on GitHub. You have access to methods to download and update the addin so when your users restart pro, the new code will be live.
+
+You are in charge of the update flow. You can be passive with a popup that suggests your user to update the addin or you can make the addin update as soon as it knows there is a new version. It is up to you!
+
 # Getting Started
 
 ### Prerequisites
