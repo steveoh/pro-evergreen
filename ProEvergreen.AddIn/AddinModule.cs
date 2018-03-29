@@ -1,4 +1,6 @@
 ﻿namespace ProEvergreen.AddIn {
+    using System.Security.Cryptography;
+    using System.Threading.Tasks;
     using ArcGIS.Desktop.Framework;
     using ArcGIS.Desktop.Framework.Contracts;
 
@@ -10,6 +12,8 @@
         /// </summary>
         public static AddinModule Current => _this ?? (_this = (AddinModule) FrameworkApplication.FindModule("ProEvergreen_AddIn_Module"));
 
+        public Evergreen Evergreen { get; set; }
+        public Octokit.Release Release { get; set; }
         #region Overrides
 
         /// <summary>
@@ -25,16 +29,52 @@
         #endregion Overrides
 
         public void ShowVersion() {
-            var updator = new SelfUpdate("steveoh", "pro-evergreen");
-            var versionInformation = updator.GetCurrentAddInVersion();
+            Evergreen = new Evergreen("steveoh", "pro-evergreen");
+            var versionInformation = Evergreen.GetCurrentAddInVersion();
 
             var version = new Notification {
                 Message = versionInformation.ToString(),
                 ImageUrl = "",
-                Title = "BOOOOGY"
+                Title = "Evergreen"
             };
 
             FrameworkApplication.AddNotification(version);
+        }
+
+        public async Task CheckForUpdate() {
+            Release = await Evergreen.GetLatestReleaseFromGithub();
+            var version = Evergreen.GetCurrentAddInVersion();
+
+            var notification = new Notification
+            {
+                Message = "You are up to date.",
+                ImageUrl = "",
+                Title = "Evergreen: Version Check"
+            };
+
+            if (Evergreen.IsCurrent(version.AddInVersion, Release))
+            {
+                FrameworkApplication.AddNotification(notification);
+
+                return;
+            }
+
+            notification.Message = $"Release version {Release.TagName} is available";
+
+            FrameworkApplication.AddNotification(notification);
+        }
+
+        public async Task Update() {
+            await Evergreen.Update(Release);
+
+            var notification = new Notification
+            {
+                Message = "Restart to update.",
+                ImageUrl = "",
+                Title = "Evergreen: Upate Complete"
+            };
+
+            FrameworkApplication.AddNotification(notification);
         }
     }
 }

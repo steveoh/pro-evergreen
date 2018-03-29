@@ -1,7 +1,7 @@
 ﻿namespace ProEvergreen {
     internal class Program {
         private static void Main() {
-            var updator = new SelfUpdate("steveoh", "pro-evergreen");
+            var updator = new Evergreen("steveoh", "pro-evergreen");
             var release = updator.GetLatestReleaseFromGithub().Result;
 
             var version = updator.GetCurrentAddInVersion();

@@ -13,7 +13,7 @@
         [InlineData("1.0.0", "v1.0.1", false)] // tag version is higher
         [InlineData("2.0.0", "v1.0.0", true)] // current version is higher than tag. Active development?
         public void ReturnsTrue_When_ReleasesAreTheSame(string currentVersion, string tagVersion, bool isCurrent) {
-            var patient = new SelfUpdate("user", "repo");
+            var patient = new Evergreen("user", "repo");
             var version = CreateReleaseFromTag(tagVersion);
 
             Assert.Equal(isCurrent, patient.IsCurrent(currentVersion, version));

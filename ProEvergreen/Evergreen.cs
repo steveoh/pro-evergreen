@@ -14,7 +14,7 @@
     using Semver;
     using FileMode = System.IO.FileMode;
 
-    public class SelfUpdate {
+    public class Evergreen {
         private readonly Assembly _assembly;
         private readonly HttpClient _client;
         private readonly GitHubClient _gitHubClient;
@@ -24,7 +24,7 @@
         private bool _noRelease;
         private IReadOnlyList<Release> _releases;
 
-        public SelfUpdate(string user, string repository) {
+        public Evergreen(string user, string repository) {
             _user = user;
             _repository = repository;
             _assembly = Assembly.GetCallingAssembly();

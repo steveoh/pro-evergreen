@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelfUpdate.cs" />
+    <Compile Include="Evergreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

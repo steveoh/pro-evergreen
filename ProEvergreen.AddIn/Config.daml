@@ -1,6 +1,4 @@
-﻿<ArcGIS defaultAssembly="ProEvergreen.AddIn.dll" defaultNamespace="ProEvergreen.AddIn"
-        xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+﻿<ArcGIS defaultAssembly="ProEvergreen.AddIn.dll" defaultNamespace="ProEvergreen.AddIn" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
   <AddInInfo id="{06c1344d-a9d3-4c36-ae5c-2e9cec65b4a7}" version="0.9.0" desktopVersion="2.1.10257">
     <Name>ProEvergreen.AddIn</Name>
     <Description>As addin to test the use of the updator</Description>
@@ -26,12 +24,20 @@
         <group id="ProEvergreen_AddIn_Group1" caption="Evergreen" appearsOnAddInTab="true">
           <!-- host controls within groups -->
           <button refID="ProEvergreen_AddIn_GetVersionButton" size="large" />
+          <button refID="ProEvergreen_AddIn_CheckForUpdateButton" size="large" />
+          <button refID="ProEvergreen_AddIn_UpdateButton" size="large" />
         </group>
       </groups>
       <controls>
         <!-- add your controls here -->
         <button id="ProEvergreen_AddIn_GetVersionButton" caption="Get Version" className="GetVersionButton" loadOnClick="true" smallImage="Images\GenericButtonBlue16.png" largeImage="Images\GenericButtonBlue32.png">
           <tooltip heading="Tooltip Heading">Is there a newer version?<disabledText /></tooltip>
+        </button>
+        <button id="ProEvergreen_AddIn_CheckForUpdateButton" caption="CheckForUpdateButton" className="CheckForUpdateButton" loadOnClick="true" smallImage="Images\GenericButtonBlue16.png" largeImage="Images\GenericButtonBlue32.png">
+          <tooltip heading="Tooltip Heading">Tooltip text<disabledText /></tooltip>
+        </button>
+        <button id="ProEvergreen_AddIn_UpdateButton" caption="UpdateButton" className="UpdateButton" loadOnClick="true" smallImage="Images\GenericButtonBlue16.png" largeImage="Images\GenericButtonBlue32.png">
+          <tooltip heading="Tooltip Heading">Tooltip text<disabledText /></tooltip>
         </button>
       </controls>
     </insertModule>
