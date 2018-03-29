@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{32A819F0-27C4-4166-B49F-E296F159DE62}</ProjectGuid>
+    <ProjectGuid>{06C1344D-A9D3-4C36-AE5C-2E9CEC65B4A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProEvergreen.ProAddIn</RootNamespace>
-    <AssemblyName>ProEvergreen.ProAddIn</AssemblyName>
+    <RootNamespace>ProEvergreen.AddIn</RootNamespace>
+    <AssemblyName>ProEvergreen.AddIn</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -88,17 +88,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <AddInContent Include="Config.daml">
-      <SubType>Designer</SubType>
-    </AddInContent>
+    <AddInContent Include="Config.daml" />
     <AddInContent Include="Images\AddInDesktop16.png" />
     <AddInContent Include="Images\AddInDesktop32.png" />
     <AddInContent Include="DarkImages\AddInDesktop16.png" />
     <AddInContent Include="DarkImages\AddInDesktop32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button1.cs" />
-    <Compile Include="Module1.cs" />
+    <Compile Include="GetVersionButton.cs" />
+    <Compile Include="AddinModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProEvergreen\ProEvergreen.csproj">
-      <Project>{4d7369eb-ef50-4dfd-9a4f-7a51b0e219b0}</Project>
+      <Project>{4D7369EB-EF50-4DFD-9A4F-7A51B0E219B0}</Project>
       <Name>ProEvergreen</Name>
     </ProjectReference>
   </ItemGroup>

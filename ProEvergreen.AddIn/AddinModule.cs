@@ -1,14 +1,14 @@
-﻿namespace ProEvergreen.ProAddIn {
+﻿namespace ProEvergreen.AddIn {
     using ArcGIS.Desktop.Framework;
     using ArcGIS.Desktop.Framework.Contracts;
 
-    internal class Module1 : Module {
-        private static Module1 _this;
+    internal class AddinModule : Module {
+        private static AddinModule _this;
 
         /// <summary>
         ///     Retrieve the singleton instance to this module here
         /// </summary>
-        public static Module1 Current => _this ?? (_this = (Module1) FrameworkApplication.FindModule("ProAddIn_Module"));
+        public static AddinModule Current => _this ?? (_this = (AddinModule) FrameworkApplication.FindModule("ProEvergreen_AddIn_Module"));
 
         #region Overrides
 
@@ -22,21 +22,19 @@
             return true;
         }
 
-        public string Version() {
-            var updator = new SelfUpdate("agrc", "TrailsAddin");
-            var version = updator.GetCurrentAddInVersion();
+        #endregion Overrides
 
-            var a = new Notification {
-                Message = version.ToString(),
+        public void ShowVersion() {
+            var updator = new SelfUpdate("steveoh", "pro-evergreen");
+            var versionInformation = updator.GetCurrentAddInVersion();
+
+            var version = new Notification {
+                Message = versionInformation.ToString(),
                 ImageUrl = "",
                 Title = "Add in Version Information"
             };
 
-            FrameworkApplication.AddNotification(a);
-
-            return version.ToString();
+            FrameworkApplication.AddNotification(version);
         }
-
-        #endregion Overrides
     }
 }

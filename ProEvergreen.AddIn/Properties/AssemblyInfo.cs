@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProAddIn")]
+[assembly: AssemblyTitle("ProEvergreen.AddIn")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Acme")]
-[assembly: AssemblyProduct("ProAddIn")]
+[assembly: AssemblyCompany("AGRC")]
+[assembly: AssemblyProduct("ProEvergreen.AddIn")]
 [assembly: AssemblyCopyright("Copyright © Acme 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("32a819f0-27c4-4166-b49f-e296f159de62")]
+[assembly: Guid("06c1344d-a9d3-4c36-ae5c-2e9cec65b4a7")]
 
 // Version information for an assembly consists of the following four values:
 //

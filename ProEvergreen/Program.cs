@@ -3,7 +3,7 @@
 
     internal class Program {
         private static void Main() {
-            var updator = new SelfUpdate("steveoh", "ProEvergreen");
+            var updator = new SelfUpdate("steveoh", "pro-evergreen");
             var release = updator.GetLatestReleaseFromGithub().Result;
 
             var version = updator.GetCurrentAddInVersion();
