@@ -33,7 +33,10 @@
                 Timeout = TimeSpan.FromMinutes(1)
             };
         }
-
+        /// <summary>
+        /// Returns the version information from the config.daml from inside the default addin folder
+        /// </summary>
+        /// <returns>VersionInformation has the addin name, it's version and the pro version it was compiled for</returns>
         public VersionInformation GetCurrentAddInVersion() {
             var myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var arcGisProLocation = Path.Combine(myDocs, "ArcGIS", "AddIns", "ArcGISPro");
@@ -89,13 +92,18 @@
                                           addInInfo.Attributes().Single(x => x.Name == "desktopVersion").Value);
         }
 
-        public async Task<Release> GetLatestReleaseFromGithub() {
+        /// <summary>
+        /// Get the latest releases from GitHub. Use pre releases if you want to allow your users to be on the beta channel.
+        /// </summary>
+        /// <param name="includePrerelease">true if you want "beta" releases to be included.</param>
+        /// <returns>http://octokitnet.readthedocs.io/en/latest/releases/</returns>
+        public async Task<Release> GetLatestReleaseFromGithub(bool includePrerelease=false) {
             if (_noRelease || _releases?.Count > 0) {
                 return _releases[0];
             }
 
             _releases = await _gitHubClient.Repository.Release.GetAll(_user, _repository);
-            _releases = _releases.Where(x => x.Draft == false && x.Assets.Count > 0).ToList();
+            _releases = _releases.Where(x => x.Prerelease == includePrerelease && x.Draft == false && x.Assets.Count > 0).ToList();
 
             if (_releases.Count >= 1) {
                 return _releases[0];
@@ -106,6 +114,12 @@
             return null;
         }
 
+        /// <summary>
+        /// Returns true if the current version matches the release version. This uses the standard semantic versioning model.
+        /// </summary>
+        /// <param name="currentVersion">The addin version</param>
+        /// <param name="currentRelease">The github release version object</param>
+        /// <returns></returns>
         public bool IsCurrent(string currentVersion, Release currentRelease) {
             // TODO: should we care about desktopVersion with incompatible pro version apis?
             // maybe add a .proversion file with the semver of the pro at build time
@@ -122,6 +136,12 @@
             return tagVersion <= currentVersion;
         }
 
+        /// <summary>
+        /// Download the esriAddinX from the provided github release and install it in the addin folder. A restart will be required to 
+        /// see the new changes.
+        /// </summary>
+        /// <param name="release">The OctoKit.Release that contains the new addin</param>
+        /// <returns></returns>
         public async Task<string> Update(Release release) {
             var addinAsset = release.Assets.Single(x => x.Name.EndsWith(".esriAddinX", StringComparison.InvariantCultureIgnoreCase));
             var newAddinDownloadLocation = Path.Combine(_addinFolder, addinAsset.Name);
