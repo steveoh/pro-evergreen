@@ -22,7 +22,7 @@ You are in charge of the update flow. You can be passive with a popup that sugge
 ### Nuget Installation
 
 - **NuGet package manager**: Search for `ProEvergreen` [https://www.nuget.org/packages/ProEvergreen/](https://www.nuget.org/packages/ProEvergreen/)
-- **Powershell**: `Install-Package ProEvergreen -Version 1.0.0`
+- **Powershell**: `Install-Package ProEvergreen
 
 ### Usage
 
