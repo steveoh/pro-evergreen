@@ -47,6 +47,10 @@ This repository also has a [sample release](https://github.com/steveoh/pro-everg
 
 # Publishing new releases
 ```
+// edit nuspec release notes
+
+// release build
+
 // create package
 nuget pack ProEvergreen.csproj -Properties Configuration=Release
 
