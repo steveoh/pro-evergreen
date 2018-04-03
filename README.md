@@ -48,7 +48,7 @@ This repository also has a [sample release](https://github.com/steveoh/pro-everg
 # Publishing new releases
 ```
 // create package
-nuget pack ProEvergreen.csproj Configuration=Release
+nuget pack ProEvergreen.csproj -Properties Configuration=Release
 
 // publish
 nuget push ProEvergreen.{M.m.p}.nupkg {apikey} -Source https://api.nuget.org/v3/index.json
