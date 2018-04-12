@@ -1,6 +1,8 @@
 # pro-evergreen 
+![NuGet version](https://badge.fury.io/nu/polly.svg)
 
 ![pro evergreen](./proevergreen.png)
+
 
 Never send an esri addin update to someone via email or a file share again!
 
