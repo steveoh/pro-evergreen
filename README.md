@@ -1,5 +1,5 @@
 # pro-evergreen 
-![NuGet version](https://badge.fury.io/nu/polly.svg)
+![NuGet version](https://badge.fury.io/nu/ProEvergreen.svg)
 
 ![pro evergreen](./proevergreen.png)
 
