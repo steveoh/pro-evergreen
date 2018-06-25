@@ -24,11 +24,17 @@
         private bool _noRelease;
         private IReadOnlyList<Release> _releases;
 
-        public Evergreen(string user, string repository) {
+        public Evergreen(string user, string repository, string githubEnterpriseUrl=null) {
             _user = user;
             _repository = repository;
             _assembly = Assembly.GetCallingAssembly();
-            _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"));
+
+            if (!string.IsNullOrEmpty(githubEnterpriseUrl)) {
+                _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"), new Uri(githubEnterpriseUrl));
+            } else {
+                _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"));
+            }
+
             _client = new HttpClient {
                 Timeout = TimeSpan.FromMinutes(1)
             };
