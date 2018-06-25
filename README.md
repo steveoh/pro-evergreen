@@ -1,6 +1,8 @@
 # pro-evergreen 
+[![NuGet version](https://badge.fury.io/nu/ProEvergreen.svg)](https://www.nuget.org/packages/ProEvergreen/)
 
 ![pro evergreen](./proevergreen.png)
+
 
 Never send an esri addin update to someone via email or a file share again!
 
@@ -22,7 +24,7 @@ You are in charge of the update flow. You can be passive with a popup that sugge
 ### Nuget Installation
 
 - **NuGet package manager**: Search for `ProEvergreen` [https://www.nuget.org/packages/ProEvergreen/](https://www.nuget.org/packages/ProEvergreen/)
-- **Powershell**: `Install-Package ProEvergreen -Version 1.0.0`
+- **Powershell**: `Install-Package ProEvergreen
 
 ### Usage
 
@@ -47,6 +49,10 @@ This repository also has a [sample release](https://github.com/steveoh/pro-everg
 
 # Publishing new releases
 ```
+// edit nuspec release notes
+
+// release build
+
 // create package
 nuget pack ProEvergreen.csproj -Properties Configuration=Release
 
