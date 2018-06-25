@@ -49,10 +49,10 @@ This repository also has a [sample release](https://github.com/steveoh/pro-everg
 
 # Publishing new releases
 1. create nuspec and edit output
-   `nuget spec ProEvergreen.csproj`
+   - `nuget spec ProEvergreen.csproj`
 1. edit nuspec release notes
 1. release build
 1. create package
-   `nuget pack ProEvergreen.csproj -Properties Configuration=Release`
+   - `nuget pack ProEvergreen.csproj -Properties Configuration=Release`
 1. publish
-   `nuget push ProEvergreen.{M.m.p}.nupkg {apikey} -Source https://api.nuget.org/v3/index.json`
+   - `nuget push ProEvergreen.{M.m.p}.nupkg {apikey} -Source https://api.nuget.org/v3/index.json`
