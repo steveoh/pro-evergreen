@@ -19,6 +19,14 @@
             Assert.Equal(isCurrent, patient.IsCurrent(currentVersion, version));
         }
 
+        [Fact]
+        public void Throws_if_release_is_null() {
+            var patient = new Evergreen("user", "repo");
+            const string currentVersion = "1.0.0";
+
+            Assert.Throws<ArgumentNullException>(() => patient.IsCurrent(currentVersion, null));
+        }
+
         public static Release CreateReleaseFromTag(string version) {
             var s = string.Empty;
 

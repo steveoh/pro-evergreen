@@ -123,6 +123,18 @@
         public bool IsCurrent(string currentVersion, Release currentRelease) {
             // TODO: should we care about desktopVersion with incompatible pro version apis?
             // maybe add a .proversion file with the semver of the pro at build time
+
+            if (string.IsNullOrEmpty(currentVersion))
+            {
+                throw new ArgumentNullException(nameof(currentVersion), "The pro addin version could not be found. Please submit an issue on github.");
+            }
+
+            if (currentRelease == null)
+            {
+                throw new ArgumentNullException(nameof(currentRelease), "The GitHub release is null. A release will be ignored if it does not contains a .esriAddinX " +
+                                                                        "release asset or if it is a pre-release and includPrereleases is false.");
+            }
+
             var tagVersion = SemVersion.Parse(currentRelease.TagName.Replace("v", ""));
 
             if (currentVersion.Split('.').Length != 4) {
@@ -143,6 +155,12 @@
         /// <param name="release">The OctoKit.Release that contains the new addin</param>
         /// <returns></returns>
         public async Task<string> Update(Release release) {
+            if (release == null)
+            {
+                throw new ArgumentNullException(nameof(release), "The GitHub release is null. A release will be ignored if it does not contains a .esriAddinX " +
+                                                                        "release asset or if it is a pre-release and includPrereleases is false.");
+            }
+
             var addinAsset = release.Assets.Single(x => x.Name.EndsWith(".esriAddinX", StringComparison.InvariantCultureIgnoreCase));
             var newAddinDownloadLocation = Path.Combine(_addinFolder, addinAsset.Name);
 
