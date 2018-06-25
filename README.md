@@ -35,10 +35,10 @@ var evergreen = new Evergreen("steveoh", "pro-evergreen");
 
 #### The API has four main uses currently. 
 
-1. `evergreen.GetCurrentAddInVersion();` retuns a `VersionInformation` object that has the addin name, version, and the version of pro it was created with.
-1. `evergreen.GetLatestReleaseFromGithub();` returns an OctoKit `Release` object with the information about the GitHub releases for the repository.
+1. `evergreen.GetCurrentAddInVersion();` retuns a `VersionInformation` object that has the addin name, version, and the version of pro it was created with. Will throw a `ArgumentOutOfRangeException` if it can't find the file or an `ArgumentException` if it can't find the config.daml.
+1. `evergreen.GetLatestReleaseFromGithub();` returns an OctoKit `Release` object with the information about the GitHub releases for the repository. Will throw a `ArgumentNullException` if either parameters are empty.
 1. `evergreen.IsCurrent(addinVerion, OctoKit Release);` returns a `bool`. It is `true` if the semantic version of the addin is equal to what is available on GitHub. 
-1. `evergreen.Update(OctoKit Release);` will download the current release, replacing and updating the current addin.
+1. `evergreen.Update(OctoKit Release);` will download the current release, replacing and updating the current addin. Will throw an `ArgumentNullException` if the release is null.
 
 
 # Example
@@ -48,14 +48,11 @@ You can view an addin example in [this repository](https://github.com/steveoh/pr
 This repository also has a [sample release](https://github.com/steveoh/pro-evergreen/releases).
 
 # Publishing new releases
-```
-// edit nuspec release notes
-
-// release build
-
-// create package
-nuget pack ProEvergreen.csproj -Properties Configuration=Release
-
-// publish
-nuget push ProEvergreen.{M.m.p}.nupkg {apikey} -Source https://api.nuget.org/v3/index.json
-```
+1. create nuspec and edit output
+   `nuget spec ProEvergreen.csproj`
+1. edit nuspec release notes
+1. release build
+1. create package
+   `nuget pack ProEvergreen.csproj -Properties Configuration=Release`
+1. publish
+   `nuget push ProEvergreen.{M.m.p}.nupkg {apikey} -Source https://api.nuget.org/v3/index.json`
