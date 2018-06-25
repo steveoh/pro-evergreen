@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/steveoh/pro-evergreen/master/proevergreen.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Added the include prerelase flag to GetLatestReleaseFromGithub</releaseNotes>
+    <releaseNotes>Updated methods to guard against null reference exceptions. Added the ability to pass github enterprise urls or credentials for use with private repositories to the Evergreen constructor.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>ArcGIS Esri auto-update installer AddIn ArcGISPro esriAddinX GIS maps spatial map</tags>
   </metadata>
