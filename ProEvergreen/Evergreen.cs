@@ -1,4 +1,6 @@
-﻿namespace ProEvergreen {
+﻿using ProEvergreen.models;
+
+namespace ProEvergreen {
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -24,15 +26,19 @@
         private bool _noRelease;
         private IReadOnlyList<Release> _releases;
 
-        public Evergreen(string user, string repository, string githubEnterpriseUrl=null) {
+        public Evergreen(string user, string repository, GitHubOptions options=null) {
             _user = user;
             _repository = repository;
             _assembly = Assembly.GetCallingAssembly();
 
-            if (!string.IsNullOrEmpty(githubEnterpriseUrl)) {
-                _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"), new Uri(githubEnterpriseUrl));
+            if (options?.GitHubEnterpriseUri != null) {
+                _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"), options.GitHubEnterpriseUri);
             } else {
                 _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"));
+            }
+
+            if (options?.Credentials != null) {
+                _gitHubClient.Credentials = options.Credentials;
             }
 
             _client = new HttpClient {
