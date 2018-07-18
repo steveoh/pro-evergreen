@@ -153,10 +153,6 @@ namespace ProEvergreen {
                 return tagVersion <= currentVersion;
             }
 
-            // we have assembly version
-            var lastIndexOf = currentVersion.LastIndexOf(".", StringComparison.OrdinalIgnoreCase);
-            currentVersion = currentVersion.Remove(lastIndexOf, currentVersion.Length - lastIndexOf);
-
             return tagVersion <= currentVersion;
         }
 

@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/steveoh/pro-evergreen/master/proevergreen.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Updated methods to guard against null reference exceptions. Added the ability to pass github enterprise urls or credentials for use with private repositories to the Evergreen constructor.</releaseNotes>
+    <releaseNotes>Breaking change: No longer stripping the last digit from .NET assembly references. Use valid semver version syntax from now on.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>ArcGIS Esri auto-update installer AddIn ArcGISPro esriAddinX GIS maps spatial map</tags>
   </metadata>

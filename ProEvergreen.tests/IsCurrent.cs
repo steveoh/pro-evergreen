@@ -5,18 +5,28 @@
 
     public class IsCurrent {
         [Theory]
-        [InlineData("1.0", "v1.0.0", true)] // default pro versions match
-        [InlineData("1.0.0.0", "v1.0.0", true)] // default assembly versions match
-        [InlineData("1.0.0.1", "v1.0.0", true)] // default assembly versions match
+        [InlineData("1.0", "v1.0.0", true)] // default pro versions match 
         [InlineData("1.0.0", "v1.0.0", true)] // versions match
+        [InlineData("1.0.0-beta.1", "v1.0.0-beta.1", true)] // versions match
+        [InlineData("1.0.0-beta.0", "v1.0.0-beta.1", false)] // beta version is smaller
         [InlineData("1.0.0", "v1.1.0", false)] // tag version is higher
         [InlineData("1.0.0", "v1.0.1", false)] // tag version is higher
         [InlineData("2.0.0", "v1.0.0", true)] // current version is higher than tag. Active development?
-        public void ReturnsTrue_When_ReleasesAreTheSame(string currentVersion, string tagVersion, bool isCurrent) {
+        public void IsCurrent_responds_correctly(string currentVersion, string tagVersion, bool isCurrent) {
             var patient = new Evergreen("user", "repo");
             var version = CreateReleaseFromTag(tagVersion);
 
             Assert.Equal(isCurrent, patient.IsCurrent(currentVersion, version));
+        }
+
+        [Theory]
+        [InlineData("1.0.0.0", "v1.0.0")] // invalid semver
+        [InlineData("1.0.0.1", "v1.0.0")] // invalid semver
+        public void IsCurrent_throws_on_invalid_semversions(string currentVersion, string tagVersion) {
+            var patient = new Evergreen("user", "repo");
+            var version = CreateReleaseFromTag(tagVersion);
+
+            Assert.Throws<ArgumentException>(() => patient.IsCurrent(currentVersion, version));
         }
 
         [Fact]
