@@ -23,8 +23,11 @@ namespace ProEvergreen {
         private readonly string _repository;
         private readonly string _user;
         private string _addinFolder;
-        private bool _noRelease;
-        private IReadOnlyList<Release> _releases;
+        private readonly Dictionary<bool, ReleaseTicket> _tickets = new Dictionary<bool, ReleaseTicket>(2)
+        {
+            { true, new ReleaseTicket() },
+            { false, new ReleaseTicket() }
+        };
 
         public Evergreen(string user, string repository, GitHubOptions options=null) {
             _user = user;
@@ -110,20 +113,17 @@ namespace ProEvergreen {
         /// <param name="includePrerelease">true if you want "beta" releases to be included.</param>
         /// <returns>http://octokitnet.readthedocs.io/en/latest/releases/</returns>
         public async Task<Release> GetLatestReleaseFromGithub(bool includePrerelease=false) {
-            if (_noRelease || _releases?.Count > 0) {
-                return _releases[0];
+            if (_tickets[includePrerelease].Punched)
+            {
+                return _tickets[includePrerelease].Releases.FirstOrDefault();
             }
 
-            _releases = await _gitHubClient.Repository.Release.GetAll(_user, _repository);
-            _releases = _releases.Where(x => x.Prerelease == includePrerelease && x.Draft == false && x.Assets.Count > 0).ToList();
+            _tickets[includePrerelease].Releases = await _gitHubClient.Repository.Release.GetAll(_user, _repository);
+            _tickets[includePrerelease].Releases = _tickets[includePrerelease].Releases.Where(x => x.Prerelease == includePrerelease && x.Draft == false && x.Assets.Count > 0).ToList();
 
-            if (_releases.Count >= 1) {
-                return _releases[0];
-            }
+            _tickets[includePrerelease].Punched = true;
 
-            _noRelease = true;
-
-            return null;
+            return _tickets[includePrerelease].Releases.FirstOrDefault();
         }
 
         /// <summary>
