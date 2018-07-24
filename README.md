@@ -47,6 +47,12 @@ You can view an addin example in [this repository](https://github.com/steveoh/pr
 
 This repository also has a [sample release](https://github.com/steveoh/pro-evergreen/releases).
 
+# Projects using Evergreen
+
+1. https://github.com/agrc/uic-addin
+
+_send a pr to add your project!_
+
 # Publishing new releases
 1. create nuspec and edit output
    - `nuget spec ProEvergreen.csproj`
