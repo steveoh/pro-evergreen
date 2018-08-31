@@ -50,6 +50,7 @@ This repository also has a [sample release](https://github.com/steveoh/pro-everg
 # Projects using Evergreen
 
 1. https://github.com/agrc/uic-addin
+2. [roemhildtg/arcgis-pro-addins](https://github.com/roemhildtg/arcgis-pro-addins) - streetview and selection tools addins
 
 _send a pr to add your project!_
 
