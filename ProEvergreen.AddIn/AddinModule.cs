@@ -13,7 +13,7 @@
         /// </summary>
         public static AddinModule Current => _this ?? (_this = (AddinModule) FrameworkApplication.FindModule("ProEvergreen_AddIn_Module"));
 
-        public Evergreen Evergreen { get; set; }
+        public Evergreen Evergreen { get; set; } = new Evergreen("steveoh", "pro-evergreen");
         public Release Release { get; set; }
 
         #region Overrides
@@ -31,7 +31,6 @@
         #endregion Overrides
 
         public void ShowVersion() {
-            Evergreen = new Evergreen("steveoh", "pro-evergreen");
             var versionInformation = Evergreen.GetCurrentAddInVersion();
 
             var version = new Notification {
