@@ -56,6 +56,9 @@ _One way to show available updates with evergreen_
 _example of showing information evergreen knows about the current add-in_  
 ![image](https://user-images.githubusercontent.com/325813/54374989-d31b9a00-4645-11e9-8e59-186905ffc131.png)
 
+_showing available update in a growl style notification_  
+![image](https://user-images.githubusercontent.com/325813/54376622-14fa0f80-4649-11e9-9fa8-37909f7acd3e.png)
+
 # Projects using Evergreen
 
 1. https://github.com/agrc/uic-addin
