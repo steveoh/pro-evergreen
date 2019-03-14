@@ -59,6 +59,9 @@ _example of showing information evergreen knows about the current add-in_
 _showing available update in a growl style notification_  
 ![image](https://user-images.githubusercontent.com/325813/54376622-14fa0f80-4649-11e9-9fa8-37909f7acd3e.png)
 
+_restart is required after an update_  
+![image](https://user-images.githubusercontent.com/325813/54377100-16780780-464a-11e9-93d3-9999dc2165eb.png)
+
 # Projects using Evergreen
 
 1. https://github.com/agrc/uic-addin
