@@ -53,6 +53,9 @@ _Options tab with data from evergreen and option to be on beta channel_
 _One way to show available updates with evergreen_  
 ![image](https://user-images.githubusercontent.com/325813/54373454-e2e5af00-4642-11e9-8368-a343c1fc4cdf.png)
 
+_example of showing information evergreen knows about the current add-in_  
+![image](https://user-images.githubusercontent.com/325813/54374989-d31b9a00-4645-11e9-8e59-186905ffc131.png)
+
 # Projects using Evergreen
 
 1. https://github.com/agrc/uic-addin
