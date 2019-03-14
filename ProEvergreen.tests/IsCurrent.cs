@@ -40,7 +40,8 @@
         public static Release CreateReleaseFromTag(string version) {
             var s = string.Empty;
 
-            return new Release(s, s, s, s, 0, version, s, s, s, false, false, DateTimeOffset.Now, null, new Author(), s, s, null);
+            return new Release(s, s, s, s, 0, s, version, s, s, s, false, false, DateTimeOffset.Now, DateTimeOffset.Now, new Author(), s, s,
+                               null);
         }
     }
 }
