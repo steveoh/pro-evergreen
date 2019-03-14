@@ -52,6 +52,7 @@ _Options tab with data from evergreen and option to be on beta channel_
 ![image](https://user-images.githubusercontent.com/325813/54373349-b336a700-4642-11e9-8960-51aa578460ab.png)
 
 _One way to show available updates with evergreen_
+
 ![image](https://user-images.githubusercontent.com/325813/54373454-e2e5af00-4642-11e9-8368-a343c1fc4cdf.png)
 
 # Projects using Evergreen
