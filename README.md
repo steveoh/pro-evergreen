@@ -47,10 +47,11 @@ You can view an addin example in [this repository](https://github.com/steveoh/pr
 
 This repository also has a [sample release](https://github.com/steveoh/pro-evergreen/releases).
 
-Options tab with data from evergreen
+_Options tab with data from evergreen and option to be on beta channel_
+
 ![image](https://user-images.githubusercontent.com/325813/54373349-b336a700-4642-11e9-8960-51aa578460ab.png)
 
-One way to show available updates with evergreen
+_One way to show available updates with evergreen_
 ![image](https://user-images.githubusercontent.com/325813/54373454-e2e5af00-4642-11e9-8368-a343c1fc4cdf.png)
 
 # Projects using Evergreen
