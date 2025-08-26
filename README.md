@@ -71,10 +71,7 @@ _send a pr to add your project!_
 
 # Publishing new releases
 1. create nuspec and edit output
-   - `nuget spec ProEvergreen.csproj`
-1. edit nuspec release notes
-1. release build
-1. create package
-   - `nuget pack ProEvergreen.csproj -Properties Configuration=Release`
+   - `dotnet pack .\ProEvergreen\ProEvergreen.csproj --configuration Release`
+1. edit nuspec
 1. publish
-   - `nuget push ProEvergreen.{M.m.p}.nupkg {apikey} -Source https://api.nuget.org/v3/index.json`
+   - `dotnet nuget push .\ProEvergreen\bin\release\ProEvergreen.{M.m.p}.nupkg --api-key {apikey} --source https://api.nuget.org/v3/index.json`

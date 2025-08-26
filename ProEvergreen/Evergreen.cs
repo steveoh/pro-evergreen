@@ -1,6 +1,7 @@
 ﻿using ProEvergreen.models;
 
-namespace ProEvergreen {
+namespace ProEvergreen
+{
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -16,7 +17,8 @@ namespace ProEvergreen {
     using Semver;
     using FileMode = System.IO.FileMode;
 
-    public class Evergreen {
+    public class Evergreen
+    {
         private readonly Assembly _assembly;
         private readonly HttpClient _client;
         private readonly GitHubClient _gitHubClient;
@@ -29,22 +31,28 @@ namespace ProEvergreen {
             { false, new ReleaseTicket() }
         };
 
-        public Evergreen(string user, string repository, GitHubOptions options=null) {
+        public Evergreen(string user, string repository, GitHubOptions options = null)
+        {
             _user = user;
             _repository = repository;
             _assembly = Assembly.GetCallingAssembly();
 
-            if (options?.GitHubEnterpriseUri != null) {
+            if (options?.GitHubEnterpriseUri != null)
+            {
                 _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"), options.GitHubEnterpriseUri);
-            } else {
+            }
+            else
+            {
                 _gitHubClient = new GitHubClient(new ProductHeaderValue("esri-pro-addin-self-update"));
             }
 
-            if (options?.Credentials != null) {
+            if (options?.Credentials != null)
+            {
                 _gitHubClient.Credentials = options.Credentials;
             }
 
-            _client = new HttpClient {
+            _client = new HttpClient
+            {
                 Timeout = TimeSpan.FromMinutes(1)
             };
         }
@@ -52,41 +60,48 @@ namespace ProEvergreen {
         /// Returns the version information from the config.daml from inside the default addin folder
         /// </summary>
         /// <returns>VersionInformation has the addin name, it's version and the pro version it was compiled for</returns>
-        public VersionInformation GetCurrentAddInVersion() {
+        public VersionInformation GetCurrentAddInVersion()
+        {
             var myDocs = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var arcGisProLocation = Path.Combine(myDocs, "ArcGIS", "AddIns", "ArcGISPro");
 
-            var attribute = (GuidAttribute) _assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0];
+            var attribute = (GuidAttribute)_assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0];
             var proAddinFolder = $"{{{attribute.Value}}}";
 
             var addinFolder = Path.Combine(arcGisProLocation, proAddinFolder);
-            if (!Directory.Exists(addinFolder)) {
+            if (!Directory.Exists(addinFolder))
+            {
                 return null;
             }
 
             // glob for *.esriAddinX
             var addins = Directory.GetFiles(addinFolder, "*.esriAddinX");
 
-            if (!addins.Any()) {
+            if (!addins.Any())
+            {
                 throw new ArgumentOutOfRangeException($"Could not find the addin in {addinFolder}");
             }
 
-            if (addins.Length > 1) {
+            if (addins.Length > 1)
+            {
                 throw new ArgumentOutOfRangeException($"Multiple esriAddinX files in {addinFolder}");
             }
 
             var addin = addins.FirstOrDefault();
 
             XDocument doc;
-            using (var zip = ZipFile.OpenRead(addin)) {
+            using (var zip = ZipFile.OpenRead(addin))
+            {
                 var entry = zip.Entries
                                .FirstOrDefault(x => x.Name.Equals("config.daml", StringComparison.InvariantCultureIgnoreCase));
 
-                if (entry == null) {
+                if (entry == null)
+                {
                     throw new ArgumentException("Could not find config.daml");
                 }
 
-                using (var stream = new StreamReader(entry.Open(), Encoding.UTF8)) {
+                using (var stream = new StreamReader(entry.Open(), Encoding.UTF8))
+                {
                     var text = new string(stream.ReadToEnd().ToCharArray());
 
                     doc = XDocument.Parse(text);
@@ -95,7 +110,8 @@ namespace ProEvergreen {
 
             var ns = XNamespace.Get("http://schemas.esri.com/DADF/Registry");
             var addInInfo = doc.Root?.Element(ns + "AddInInfo");
-            if (addInInfo == null) {
+            if (addInInfo == null)
+            {
                 throw new ArgumentException("could not find AddInInfo xml element");
             }
 
@@ -112,7 +128,8 @@ namespace ProEvergreen {
         /// </summary>
         /// <param name="includePrerelease">true if you want "beta" releases to be included.</param>
         /// <returns>http://octokitnet.readthedocs.io/en/latest/releases/</returns>
-        public async Task<Release> GetLatestReleaseFromGithub(bool includePrerelease=false) {
+        public async Task<Release> GetLatestReleaseFromGithub(bool includePrerelease = false)
+        {
             if (_tickets[includePrerelease].Punched)
             {
                 return _tickets[includePrerelease].Releases.FirstOrDefault();
@@ -132,7 +149,8 @@ namespace ProEvergreen {
         /// <param name="currentVersion">The addin version</param>
         /// <param name="currentRelease">The github release version object</param>
         /// <returns></returns>
-        public bool IsCurrent(string currentVersion, Release currentRelease) {
+        public bool IsCurrent(string currentVersion, Release currentRelease)
+        {
             // TODO: should we care about desktopVersion with incompatible pro version apis?
             // maybe add a .proversion file with the semver of the pro at build time
 
@@ -148,12 +166,9 @@ namespace ProEvergreen {
             }
 
             var tagVersion = SemVersion.Parse(currentRelease.TagName.Replace("v", ""));
+            var localVersion = SemVersion.Parse(currentVersion, SemVersionStyles.Strict);
 
-            if (currentVersion.Split('.').Length != 4) {
-                return tagVersion <= currentVersion;
-            }
-
-            return tagVersion <= currentVersion;
+            return tagVersion.ComparePrecedenceTo(localVersion) <= 0;
         }
 
         /// <summary>
@@ -162,7 +177,8 @@ namespace ProEvergreen {
         /// </summary>
         /// <param name="release">The OctoKit.Release that contains the new addin</param>
         /// <returns></returns>
-        public async Task<string> Update(Release release) {
+        public async Task<string> Update(Release release)
+        {
             if (release == null)
             {
                 throw new ArgumentNullException(nameof(release), "The GitHub release is null. A release will be ignored if it does not contains a .esriAddinX " +
@@ -176,20 +192,24 @@ namespace ProEvergreen {
             using (var request = new HttpRequestMessage(HttpMethod.Get, addinAsset.BrowserDownloadUrl))
             using (var response = await _client.SendAsync(request))
             using (var stream = await response.Content.ReadAsStreamAsync())
-            using (var fileStream = new FileStream(newAddinDownloadLocation, FileMode.Create)) {
+            using (var fileStream = new FileStream(newAddinDownloadLocation, FileMode.Create))
+            {
                 await stream.CopyToAsync(fileStream);
             }
 
             return newAddinDownloadLocation;
         }
 
-        public bool IsCompatible(string currentProVersion, string proVersionFromAssetsInRelease) {
+        public bool IsCompatible(string currentProVersion, string proVersionFromAssetsInRelease)
+        {
             throw new NotImplementedException();
         }
     }
 
-    public class VersionInformation {
-        public VersionInformation(string addInName, string addInVersion, string targetProVersion) {
+    public class VersionInformation
+    {
+        public VersionInformation(string addInName, string addInVersion, string targetProVersion)
+        {
             AddInName = addInName;
             AddInVersion = addInVersion;
             TargetProVersion = targetProVersion;
@@ -201,7 +221,8 @@ namespace ProEvergreen {
 
         public string TargetProVersion { get; set; }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return $"Add In: {AddInName}\nVersion: {AddInVersion}\nArcGIS Pro Version: {TargetProVersion}";
         }
     }
